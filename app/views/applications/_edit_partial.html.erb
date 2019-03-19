@@ -1,0 +1,7 @@
+<% if app.status_id == 1 %>
+  <%= render partial: 'edit/distribute', locals: {app: app} %>
+<% elsif app.status_id == 2 %>
+  <%= render partial: 'edit/edit', locals: {app: app} %>
+<% else %>
+  <%= render partial: 'edit/edit', locals: {app: app} %>
+<% end %>

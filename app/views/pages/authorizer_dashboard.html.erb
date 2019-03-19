@@ -1,0 +1,218 @@
+<div class="supervisor-menu-container">
+  <div class="logo-dashboard">
+    <%= image_tag 'logo.png', width: "200px" %>
+  </div>
+</div>
+
+<div class="popup-edit" id="popup">
+  <div class="popup-edit__content">
+    <div class="popup-edit__form">
+      <a href="#" data-turbolinks="false" class="popup-edit__close">&times;</a>
+    </div>
+  </div>
+</div>
+
+<div class="ui grid">
+  <div class="margin-top-medium my-tabs">
+    <input id="auth-meeting" type="radio" name="tabs" class="tab-input" checked>
+    <label for="auth-meeting" class="tab-label">Подтвердить в спутнике <span class="ui orange circular label small"><%= meeting_confirmed.size %></span></label>
+
+    <input id="auth-verificated" type="radio" name="tabs" class="tab-input">
+    <label for="auth-verificated" class="tab-label">Верифицировать в спутнике</label>
+
+    <input id="auth-photo" type="radio" name="tabs" class="tab-input">
+    <label for="auth-photo" class="tab-label">Проверить фото</label>
+
+    <input id="auth-card" type="radio" name="tabs" class="tab-input">
+    <label for="auth-card" class="tab-label">Привязать карту</label>
+
+    <input id="auth-postpone" type="radio" name="tabs" class="tab-input">
+    <label for="auth-postpone" class="tab-label">Перенести встречу</label>
+
+    <section class="authorizer-section" id="auth-meeting-content">
+      <table class="ui striped selectable table" id="authorizer-meeting">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Номер договора</th>
+            <th>ФИО</th>
+            <th>Телефон</th>
+            <th>Адрес</th>
+            <th>Курьер</th>
+            <th>Дата</th>
+            <th>Время</th>
+            <th class="center aligned">Действие</th>
+          </tr>
+        </thead>
+        <tbody>
+        <% meeting_confirmed.each do |app| %>
+          <tr class="table-app-<%= app.id %>">
+            <td><%= app.id %></td>
+            <td><%= app.sputnikid %></td>
+            <td><%= app.name %></td>
+            <td><%= app.phone %></td>
+            <td><%= app.address %></td>
+            <td><%= app.user.email %></td>
+            <td><%= app.time.strftime("%d.%m.%Y") %></td>
+            <td><%= app.timeslot.range %></td>
+            <td class="center aligned">
+              <%= form_for app, :html => {class: 'form-table'}, remote: true do  |t| %>
+                <%= t.hidden_field :status_id, value: 5 %>
+                <%= t.submit "Подтверждено", class: "button ui blue mini" %>
+              <% end %>
+            </td>
+          </tr>
+        <% end %>
+        </tbody>
+      </table>
+    </section>
+
+    <section class="authorizer-section" id="auth-verificated-content">
+      <table class="ui striped selectable table" id="authorizer-verification">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Номер договора</th>
+            <th>ФИО</th>
+            <th>Телефон</th>
+            <th>Адрес</th>
+            <th>Курьер</th>
+            <th>Дата</th>
+            <th>Время</th>
+            <th class="center aligned">Действие</th>
+          </tr>
+        </thead>
+        <tbody>
+        <% verificated.each do |app| %>
+          <tr class="table-app-<%= app.id %>">
+            <td><%= app.id %></td>
+            <td><%= app.sputnikid %></td>
+            <td><%= app.name %></td>
+            <td><%= app.phone %></td>
+            <td><%= app.address %></td>
+            <td><%= app.user.email %></td>
+            <td><%= app.time.strftime("%d.%m.%Y") %></td>
+            <td><%= app.timeslot.range %></td>
+            <td class="center aligned">
+              <%= form_for app, :html => {class: 'form-table'}, remote: true do  |t| %>
+                <%= t.hidden_field :status_id, value: 7 %>
+                <%= t.submit "Подтверждено", class: "button ui blue mini" %>
+              <% end %>
+            </td>
+          </tr>
+        <% end %>
+        </tbody>
+      </table>
+    </section>
+
+    <section class="authorizer-section" id="auth-photo-content">
+      <table class="ui striped selectable table" id="authorizer-photo">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Номер договора</th>
+            <th>ФИО</th>
+            <th>Телефон</th>
+            <th>Адрес</th>
+            <th>Курьер</th>
+            <th>Дата</th>
+            <th>Время</th>
+            <th class="center aligned">Действие</th>
+          </tr>
+        </thead>
+        <tbody>
+        <% check_photo.each do |app| %>
+          <tr class="table-app-<%= app.id %>">
+            <td><%= app.id %></td>
+            <td><%= app.sputnikid %></td>
+            <td><%= app.name %></td>
+            <td><%= app.phone %></td>
+            <td><%= app.address %></td>
+            <td><%= app.user.email %></td>
+            <td><%= app.time.strftime("%d.%m.%Y") %></td>
+            <td><%= app.timeslot.range %></td>
+            <td class="center aligned">
+              <%= link_to 'Проверить фото', application_path(app), class: "button ui blue mini" %>
+            </td>
+          </tr>
+        <% end %>
+        </tbody>
+      </table>
+    </section>
+
+    <section class="authorizer-section" id="auth-card-content">
+      <table class="ui striped selectable table" id="authorizer-card">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Номер договора</th>
+            <th>ФИО</th>
+            <th>Телефон</th>
+            <th>Адрес</th>
+            <th>Курьер</th>
+            <th>Дата</th>
+            <th>Время</th>
+            <th>Карта</th>
+            <th class="center aligned">Действие</th>
+          </tr>
+        </thead>
+        <tbody>
+        <% attach_card.each do |app| %>
+          <tr class="table-app-<%= app.id %>">
+            <td><%= app.id %></td>
+            <td><%= app.sputnikid %></td>
+            <td><%= app.name %></td>
+            <td><%= app.phone %></td>
+            <td><%= app.address %></td>
+            <td><%= app.user.email %></td>
+            <td><%= app.time.strftime("%d.%m.%Y") %></td>
+            <td><%= app.timeslot.range %></td>
+            <td><%= app.card %></td>
+            <td class="center aligned">
+              <%= form_for app, :html => {class: 'form-table'}, remote: true do  |t| %>
+                <%= t.hidden_field :status_id, value: 12 %>
+                <%= t.submit "Карта привязана", class: "button ui blue mini" %>
+              <% end %>
+            </td>
+          </tr>
+        <% end %>
+        </tbody>
+      </table>
+    </section>
+
+    <section class="authorizer-section" id="auth-postpone-content">
+      <table class="ui striped selectable table" id="authorizer-postpone">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Номер договора</th>
+            <th>ФИО</th>
+            <th>Телефон</th>
+            <th>Адрес</th>
+            <th>Курьер</th>
+            <th>Дата</th>
+            <th>Время</th>
+            <th class="center aligned">Действие</th>
+          </tr>
+        </thead>
+        <tbody>
+        <% postpone.each do |app| %>
+          <tr class="table-app-<%= app.id %>">
+            <td><%= app.id %></td>
+            <td><%= app.sputnikid %></td>
+            <td><%= app.name %></td>
+            <td><%= app.phone %></td>
+            <td><%= app.address %></td>
+            <td><%= app.user.email %></td>
+            <td><%= app.time.strftime("%d.%m.%Y") %></td>
+            <td><%= app.timeslot.range %></td>
+            <td class="center aligned">
+              <%= link_to 'Перенести', edit_application_path(app), remote: true, class: 'ui button small primary' %>
+            </td>
+          </tr>
+        <% end %>
+        </tbody>
+      </table>
+    </section>
+  </div>
+</div>

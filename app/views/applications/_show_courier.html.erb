@@ -1,0 +1,40 @@
+<div class="container-app">
+</div>
+
+
+<div class="courier-nav">
+  <%= render "shared/courier_navbar" %>
+  <div class="app-container">
+    <%= link_to root_path do %>
+      <i class="chevron left icon black"></i>
+    <% end %>
+    <span class="ui header app-number">Заявка № <%= application.id %></span>
+  </div>
+</div>
+
+  <% if application.status_id == 2 %>
+    <%= render partial: 'applications/status_collect_documents', locals: {application: application} %>
+  <% elsif application.status_id == 3 %>
+    <%= render partial: 'applications/status_new_application_courier', locals: {application: application} %>
+  <% elsif application.status_id == 4 %>
+    <%= render partial: 'applications/status_wait_operator', locals: {application: application} %>
+  <% elsif application.status_id == 5 %>
+    <%= render partial: 'applications/status_verification_application_courier', locals: {application: application} %>
+  <% elsif application.status_id == 6 %>
+    <%= render partial: 'applications/status_wait_operator', locals: {application: application} %>
+  <% elsif application.status_id == 7 %>
+    <%= render partial: 'applications/status_photo_upload_application_courier', locals: {application: application} %>
+  <% elsif application.status_id == 8 %>
+    <%= render partial: 'applications/status_wait_photo', locals: {application: application} %>
+  <% elsif application.status_id == 9 %>
+    <%= render partial: 'applications/status_wait_photo', locals: {application: application} %>
+  <% elsif application.status_id == 10 %>
+    <%= render partial: 'applications/status_courier_card', locals: {application: application} %>
+  <% elsif application.status_id == 11 %>
+    <%= render partial: 'applications/status_wait_operator', locals: {application: application} %>
+  <% elsif application.status_id == 12 %>
+    <%= render partial: 'applications/status_return_documents', locals: {application: application} %>
+  <% end %>
+
+
+

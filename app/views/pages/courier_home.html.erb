@@ -1,0 +1,37 @@
+<div class="container-app">
+</div>
+
+<div class="page-name" data-page="courier-home">
+</div>
+
+<div class="navbar-courier">
+    <%= render 'shared/courier_navbar' %>
+    <div class="app-container">
+      <div class="ui header">Мои заявки</div>
+    </div>
+</div>
+
+
+<%= content_tag(:div, :class => "cards courier-id-#{current_user.id}") do %>
+  <% @applications.each do |app| %>
+    <%= link_to application_path(app), class: "ui card card-courier", id: "courier-app-#{app.id}" do %>
+      <div class="content">
+        <div class="header">
+          <%= app.name %>
+          <%= content_tag(:span, app.status.courier, :class => "card-courier notice right floated ui label card-courier #{label_color(app.status.id)}") %>
+        </div>
+        <div class="description">
+          <p><%= app.address %></p>
+          <p>Тел: <%= app.phone %></p>
+          <p>ID: <%= app.id %></p>
+        </div>
+      </div>
+      <div class="extra content">
+        <p>Встреча: <%= app.time.strftime("%d.%m.%Y") %>, время: <%= app.timeslot.range %></p>
+      </div>
+    <% end %>
+  <% end %>
+<% end %>
+
+<div class="side-menu"></div>
+<div class="overlay"></div>

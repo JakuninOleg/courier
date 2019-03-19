@@ -1,0 +1,52 @@
+.my-tabs {
+    margin-left: 50px;
+    margin-right: 50px;
+    width: 100%;
+}
+
+.tab-label {
+    display: inline-block;
+    margin: 0 0 -1px;
+    padding: 15px 25px;
+    font-weight: 600;
+    text-align: center;
+    color: #999;
+    border: 1px solid transparent;
+
+    &:hover {
+        cursor: pointer;
+        color: black;
+    }
+}
+
+.tab-input {
+    display: none;
+
+    &:checked + label {
+        color: #0af;
+        border: 1px solid #abc;
+        border-top: 2px solid #0af;
+        border-bottom: 1px solid white;
+    }
+}
+
+.supervisor-section, .authorizer-section {
+    display: none;
+    padding: 20px 0 0;
+    border-top: 1px solid #abc;
+}
+
+#sp-distribute:checked ~ #sp-distribute-content,
+#sp-hand-out-documents:checked ~ #sp-hand-out-content,
+#sp-processing:checked ~ #sp-processing-content,
+#sp-collect-documents:checked ~ #sp-collect-content {
+    display: block;
+}
+
+#auth-meeting:checked ~ #auth-meeting-content,
+#auth-verificated:checked ~ #auth-verificated-content,
+#auth-photo:checked ~ #auth-photo-content,
+#auth-card:checked ~ #auth-card-content,
+#auth-postpone:checked ~ #auth-postpone-content {
+    display: block;
+}

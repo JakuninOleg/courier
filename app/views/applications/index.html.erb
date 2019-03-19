@@ -1,0 +1,19 @@
+<div class="ui grid centered">
+  <% @applications.each do |app| %>
+    <div class="ui card">
+      <div class="content">
+        <div class="header">
+          <%= app.name %>
+        </div>
+        <div class="description">
+          <p>Телефон: <%= app.phone %></p>
+          <p><b>Адрес: </b><%= app.address %></p>
+          <p><%= app.status.operator %></p>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>
+
+<div class="applications">
+</div>

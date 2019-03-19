@@ -1,0 +1,25 @@
+<div class="check-photos">
+<div class="ui header operator-header">Проверить фото</div>
+<div class="ui divider"></div>
+<% if applications_photo.size > 0 %>
+  <% applications_photo.in_groups_of(5, false) do |app_group| %>
+    <%= render partial: "shared/cards_grid", locals: {app_group: app_group, app_name: 'check-photo'} %>
+  <% end %>
+<% else %>
+  <div class="ui grid operator-grid" data-quantity="0"></div>
+<% end %>
+</div>
+
+
+<div class="status-13">
+<div class="ui header operator-header">Недозвон</div>
+<div class="ui divider"></div>
+<% if under_call.size > 0 %>
+  <% under_call.in_groups_of(5, false) do |app_group| %>
+    <%= render partial: "shared/cards_grid", locals: {app_group: app_group, app_name: 'undercall'} %>
+  <% end %>
+<% else %>
+  <div class="ui grid operator-grid" data-quantity="0"></div>
+<% end %>
+</div>
+

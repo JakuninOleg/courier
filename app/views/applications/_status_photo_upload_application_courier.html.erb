@@ -1,0 +1,135 @@
+<div class="app-card photo-card">
+  <div class="container-margin">
+    <%= form_for application do |t| %>
+    <div class="ui centered grid">
+      <table>
+        <tr>
+          <td class="td">
+            <span class="td-name">Фотографии договора (6 страниц)</span>
+          </td>
+          <td class="td">
+            <div class="table-photo-upload td-wrong agreement-photos">
+              <label for="agreement-photos">
+                Выбрать фото
+              </label>
+              <i class="icon large camera"></i>
+            </div>
+            <%= t.file_field :agreement_photos, multiple: true, direct_upload: true, class: 'input-photos', id: 'agreement-photos', capture: "camera" %>
+          </td>
+        </tr>
+
+        <tr>
+          <td class="td">
+            <span>Договор займа</span>
+          </td>
+          <td class="td">
+            <div class="table-photo-upload td-wrong loan-agreement">
+              <label for="loan-agreement">
+                Выбрать фото
+              </label>
+              <i class="icon large camera"></i>
+            </div>
+            <%= t.file_field :loan_agreement, direct_upload: true, class: 'input-photo', id: 'loan-agreement' %>
+          </td>
+        </tr>
+
+        <tr>
+          <td class="td">
+            <span>Соглашение АСП</span>
+          </td>
+          <td class="td">
+          <div class="table-photo-upload td-wrong asp-agreement">
+            <label for="asp-agreement">
+              Выбрать фото
+            </label>
+            <i class="icon large camera"></i>
+          </div>
+            <%= t.file_field :asp_agreement, direct_upload: true, class: 'input-photo', id: 'asp-agreement' %>
+          </td>
+        </tr>
+
+        <tr>
+          <td class="td">
+            <span>Согласие третьи лица</span>
+          </td>
+          <td class="td">
+          <div class="table-photo-upload td-wrong third-party-agreement">
+            <label for="third-party-agreement">
+              Выбрать фото
+            </label>
+            <i class="icon large camera"></i>
+          </div>
+            <%= t.file_field :third_party_agreement, direct_upload: true, class: 'input-photo', id: 'third-party-agreement' %>
+          </td>
+        </tr>
+
+        <tr>
+          <td class="td">
+            <span>Согласие на обработку ПД</span>
+          </td>
+          <td class="td">
+          <div class="table-photo-upload td-wrong pd-agreement">
+            <label for="pd-agreement">
+              Выбрать фото
+            </label>
+            <i class="icon large camera"></i>
+          </div>
+            <%= t.file_field :pd_agreement, direct_upload: true, class: 'input-photo', id: 'pd-agreement' %>
+          </td>
+        </tr>
+
+        <tr>
+          <td class="td">
+            <span>Фото паспорта</span>
+          </td>
+          <td class="td">
+          <div class="table-photo-upload td-wrong passport-photo">
+            <label for="passport-photo">
+               Выбрать фото
+            </label>
+            <i class="icon large camera"></i>
+          </div>
+            <%= t.file_field :passport_photo, direct_upload: true, class: 'input-photo', id: 'passport-photo' %>
+          </td>
+        </tr>
+
+        <tr>
+          <td class="td">
+            <span>Прописка</span>
+          </td>
+          <td class="td">
+          <div class="table-photo-upload td-wrong registration">
+            <label for="registration">
+              Выбрать фото
+            </label>
+            <i class="icon large camera"></i>
+          </div>
+            <%= t.file_field :registration, direct_upload: true, class: 'input-photo', id: 'registration' %>
+          </td>
+        </tr>
+
+        <tr>
+          <td class="td">
+            <span>Фото клиента с паспортом</span>
+          </td>
+          <td class="td">
+          <div class="table-photo-upload td-wrong client-passport">
+            <label for="client-passport">
+              Выбрать фото
+            </label>
+            <i class="icon large camera"></i>
+          </div>
+            <%= t.file_field :client_passport, direct_upload: true, class: 'input-photo', id: 'client-passport' %>
+          </td>
+        </tr>
+      </table>
+    </div>
+    <div class="ui centered grid button-container">
+      <%= t.hidden_field :status_id, value: 8 %>
+      <div class="button-photo hidden">
+        <%= t.submit 'Загрузить', class: 'ui button blue huge upload-button'%>
+      </div>
+    </div>
+    <% end %>
+  </div>
+</div>

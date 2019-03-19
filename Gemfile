@@ -27,9 +27,19 @@ gem 'jbuilder', '~> 2.5'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 gem 'devise'
+gem 'rb-readline'
+gem 'semantic-ui-sass'
+gem 'jquery-rails'
+gem 'serviceworker-rails'
+gem 'responders'
+gem 'flatpickr'
+gem 'image_processing'
+
+gem 'trestle'
+gem 'trestle-auth'
 
 # Use ActiveStorage variant
-# gem 'mini_magick', '~> 4.8'
+gem 'mini_magick', '~> 4.8'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development

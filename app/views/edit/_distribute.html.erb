@@ -1,0 +1,48 @@
+<div class="margin-bottom-small">
+  <div class="ui centered grid">
+    <div class="ui header">Изменение заявки</div>
+  </div>
+</div>
+<%= form_for app, :html => {class: 'ui form'}, remote: true do |f| %>
+  <div class="field">
+    <label for="sputnikid">Номер договора</label>
+    <%= f.text_field :sputnikid, id: 'sputnikid', placeholder: 'Номер договора', required: true %>
+  </div>
+
+  <div class="field">
+    <label for="address">Адрес</label>
+    <%= f.text_field :address, id: 'address', placeholder: 'Адрес', required: true  %>
+  </div>
+
+  <div class="field">
+    <label for="name">ФИО</label>
+    <%= f.text_field :name, id: 'name', placeholder: 'ФИО', required: true   %>
+  </div>
+
+  <div class="field">
+    <label for="phone">Телефон</label>
+    <%= f.text_field :phone, id: 'phone', placeholder: 'Телефон', required: true %>
+  </div>
+
+  <div class="two fields">
+    <div class="field">
+      <label for="time">Дата</label>
+      <%= f.date_field :time, id: 'time', class: 'datepicker' %>
+    </div>
+    <div class="field">
+      <label for="timeslot">Время</label>
+      <%= f.collection_select(:timeslot_id, Timeslot.all, :id, :range, {}, {class: 'ui fluid dropdown'}) %>
+    </div>
+  </div>
+
+  <div class="field">
+    <label for="courier">Курьер</label>
+    <%= f.collection_select(:user_id, User.where(role_id: 1), :id, :email, { include_blank: true }, {class: 'ui fluid dropdown'} )  %>
+  </div>
+
+  <%= f.hidden_field :status_id, value: 2 %>
+
+  <div class="field">
+    <%= f.submit "Обновить", class: 'ui button yellow big fluid' %>
+  </div>
+<% end %>

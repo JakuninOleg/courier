@@ -1,0 +1,192 @@
+<div class="supervisor-menu-container">
+  <a href="#popup-new" class="btn-new-app" data-turbolinks="false">
+    <div class="btn-new-app__content">
+      +
+    </div>
+  </a>
+
+  <div class="logo-dashboard">
+    <%= image_tag 'logo.png', width: "200px" %>
+  </div>
+</div>
+
+<div class="popup-new" id="popup-new">
+  <div class="popup-new__content">
+    <div class="popup-new__form">
+      <%= render partial: 'applications/new', locals: {application: @application }%>
+      <a href="#" data-turbolinks="false" class="popup-new__close">&times;</a>
+    </div>
+  </div>
+</div>
+
+<div class="popup-edit" id="popup-edit">
+  <div class="popup-edit__content">
+    <div class="popup-edit__form">
+      <a href="#" data-turbolinks="false" class="popup-edit__close">&times;</a>
+    </div>
+  </div>
+</div>
+
+<div class="ui grid">
+  <div class="margin-top-medium my-tabs">
+    <input id="sp-distribute" type="radio" name="tabs" class="tab-input" checked>
+    <label for="sp-distribute" class="tab-label">Распределить</label>
+
+    <input id="sp-hand-out-documents" type="radio" name="tabs" class="tab-input">
+    <label for="sp-hand-out-documents" class="tab-label">Выдать документы</label>
+
+    <input id="sp-processing" type="radio" name="tabs" class="tab-input">
+    <label for="sp-processing" class="tab-label">В работе</label>
+
+    <input id="sp-collect-documents" type="radio" name="tabs" class="tab-input">
+    <label for="sp-collect-documents" class="tab-label">Забрать документы</label>
+
+    <section class="supervisor-section" id="sp-distribute-content">
+      <table class="ui striped selectable table" id="app-to-distribute">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Номер договора</th>
+            <th>ФИО</th>
+            <th>Телефон</th>
+            <th>Адрес</th>
+            <th>Курьер</th>
+            <th>Дата</th>
+            <th>Время</th>
+            <th class="center aligned">Действие</th>
+          </tr>
+        </thead>
+        <tbody>
+        <% applications_to_distribute.each do |app| %>
+          <tr class="table-app-<%= app.id %>">
+            <td><%= app.id %></td>
+            <td><%= app.sputnikid %></td>
+            <td><%= app.name %></td>
+            <td><%= app.phone %></td>
+            <td><%= app.address %></td>
+            <td>Курьер не выбран</td>
+            <td><%= app.time.strftime("%d.%m.%Y") %></td>
+            <td><%= app.timeslot.range %></td>
+            <td class="center aligned">
+              <%= link_to 'Распределить', edit_application_path(app), remote: true, class: 'ui button small green' %>
+            </td>
+          </tr>
+        <% end %>
+        </tbody>
+      </table>
+    </section>
+
+    <section class="supervisor-section" id="sp-hand-out-content">
+      <table class="ui striped selectable table" id="app-to-hand-out">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Номер договора</th>
+            <th>ФИО</th>
+            <th>Телефон</th>
+            <th>Адрес</th>
+            <th>Курьер</th>
+            <th>Дата</th>
+            <th>Время</th>
+            <th class="center aligned">Действие</th>
+          </tr>
+        </thead>
+        <tbody class='documents-to-hand-out'>
+        <% documents_to_hand_out.each do |app| %>
+          <tr class="table-app-<%= app.id %>">
+            <td><%= app.id %></td>
+            <td><%= app.sputnikid %></td>
+            <td><%= app.name %></td>
+            <td><%= app.phone %></td>
+            <td><%= app.address %></td>
+            <td><%= app.user.email %></td>
+            <td><%= app.time.strftime("%d.%m.%Y") %></td>
+            <td><%= app.timeslot.range %></td>
+            <td class="center aligned position-relative">
+              <%= form_for app, :html => {class: 'form-table'}, remote: true do  |t| %>
+                <%= t.hidden_field :status_id, value: 3 %>
+                <%= t.submit "Документы выданы", class: "button ui blue mini" %>
+              <% end %>
+              <%= link_to edit_application_path(app), remote: true do %>
+                <i class="icon-table far fa-edit"></i>
+              <% end %>
+            </td>
+          </tr>
+        <% end %>
+        </tbody>
+      </table>
+    </section>
+
+    <section class="supervisor-section" id="sp-processing-content">
+      <table class="ui striped selectable table" id="app-processing">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Номер договора</th>
+            <th>ФИО</th>
+            <th>Телефон</th>
+            <th>Адрес</th>
+            <th>Курьер</th>
+            <th>Дата</th>
+            <th>Время</th>
+            <th>Статус</th>
+          </tr>
+        </thead>
+        <tbody class='documents-to-hand-out'>
+        <% processing.each do |app| %>
+          <tr class="table-app-<%= app.id %>">
+            <td><%= app.id %></td>
+            <td><%= app.sputnikid %></td>
+            <td><%= app.name %></td>
+            <td><%= app.phone %></td>
+            <td><%= app.address %></td>
+            <td><%= app.user.email %></td>
+            <td><%= app.time.strftime("%d.%m.%Y") %></td>
+            <td><%= app.timeslot.range %></td>
+            <td><%= app.status.supervisor %></td>
+          </tr>
+        <% end %>
+        </tbody>
+      </table>
+    </section>
+
+    <section class="supervisor-section" id="sp-collect-content">
+      <table class="ui striped selectable table" id="app-collect-documents">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Номер договора</th>
+            <th>ФИО</th>
+            <th>Телефон</th>
+            <th>Адрес</th>
+            <th>Курьер</th>
+            <th>Дата</th>
+            <th>Время</th>
+            <th class="center aligned">Действие</th>
+          </tr>
+        </thead>
+        <tbody class='documents-to-hand-out'>
+        <% collect_documents.each do |app| %>
+          <tr class="table-app-<%= app.id %>">
+            <td><%= app.id %></td>
+            <td><%= app.sputnikid %></td>
+            <td><%= app.name %></td>
+            <td><%= app.phone %></td>
+            <td><%= app.address %></td>
+            <td><%= app.user.email %></td>
+            <td><%= app.time.strftime("%d.%m.%Y") %></td>
+            <td><%= app.timeslot.range %></td>
+            <td class="center aligned">
+              <%= form_for app, :html => {class: 'form-table'}, remote: true do  |t| %>
+                <%= t.hidden_field :status_id, value: 14 %>
+                <%= t.submit "Документы получены", class: "button ui blue small" %>
+              <% end %>
+            </td>
+          </tr>
+        <% end %>
+        </tbody>
+      </table>
+    </section>
+
+  </div>
+</div>

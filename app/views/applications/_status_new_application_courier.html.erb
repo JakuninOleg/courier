@@ -1,0 +1,76 @@
+<div class="app-card">
+    <div class="app-content-header"><%= application.name %></div>
+    <div class="app-content-container">
+      <div class="app-content"><%= application.address %></div>
+      <div class="app-content">Тел: <%= application.phone %></div>
+      <div class="app-content">Встреча: <%= application.time.strftime("%d.%m.%Y") %>, время: <%= application.timeslot.range %></div>
+      <div class="app-content app-button">
+        <%= link_to 'Позвонить', "tel: #{application.phone}", class: "button green ui huge" %>
+      </div>
+      <div class="app-content">
+        <div class="card-help">
+          <div class="card-help-header"><i class="question circle icon yellow"></i>Справка</div>
+            <div class="card-help-content">
+              <p>- Необходимо набрать клиенту два раза</p>
+              <p>- Если клиент не взял телефон - необходимо подождать ответного звонка клиента до времени встречи</p>
+              <p>- Если клиент так и не вышел на связь - встречу можно отменить</p>
+            </div>
+         <div>
+       </div>
+      </div>
+      <div class="app-content button-group">
+        <div class="ui three column centered grid">
+          <div class="column">
+            <div class="ui button blue huge accept-app">Подтвердить</div>
+          </div>
+          <div class="column">
+            <div class="ui button red huge cancel-app">Отменить</div>
+          </div>
+        </div>
+      </div>
+   </div>
+</div>
+
+<div class="ui large modal accept">
+  <div class="header">
+    <div class="ui centered grid">
+      <div class="app-approval">ПОДТВЕРЖДЕНИЕ ЗАЯВКИ ЗАПУСТИТ ПРОЦЕСС ВЕРИФИКАЦИИ КЛИЕНТА</div>
+      <div class="ui centered row">ПРОДОЛЖИТЬ?</div>
+    </div>
+  </div>
+  <div class="content">
+    <div class="ui three column centered grid">
+      <div class="column">
+        <%= form_for application, remote: true do |t| %>
+          <%= t.hidden_field :status_id, value: 4 %>
+          <%= t.submit "Подтвердить", class: "button ui blue huge modal-button-2" %>
+        <% end %>
+      </div>
+      <div class="column">
+        <div class="button ui red huge app-cancel-button modal-button-2">Отменить</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="ui large modal cancel">
+  <div class="header">
+    <div class="ui centered grid">
+      <div class="app-approval">ОТМЕНА ЗАЯВКИ ТОЛЬКО В СЛУЧАЕ ЕСЛИ КЛИЕНТ НЕ ВЗЯЛ ТЕЛЕФОН ДВАЖДЫ</div>
+      <div class="ui centered row">ОТМЕНИТЬ ЗАЯВКУ?</div>
+    </div>
+  </div>
+  <div class="content">
+    <div class="ui three column centered grid">
+      <div class="column">
+        <div class="button ui red huge app-cancel-button modal-button-2">НЕТ</div>
+      </div>
+      <div class="column">
+          <%= form_for application, remote: true do |t| %>
+            <%= t.hidden_field :status_id, value: 13 %>
+            <%= t.submit "ДА", class: "button ui basic huge modal-button-2" %>
+          <% end %>
+      </div>
+    </div>
+  </div>
+</div>

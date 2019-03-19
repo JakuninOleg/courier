@@ -1,0 +1,13 @@
+<div class="column">
+  <div class="active-storage-<%= application.photo.id %>">
+      <p><strong>Фото клиента с паспортом:</strong></p>
+        <a href="#client-passport" data-turbolinks="false">
+        <%= image_tag @application.client_passport, class: 'client-img' %>
+        </a>
+        <p>
+          <%= link_to 'Скачать', rails_blob_path(@application.client_passport, disposition: "attachment") %>
+          <%= link_to 'Удалить', {controller: :applications, action: :delete_image_attachment,
+                                id: @application.client_passport.id}, method: :delete, remote: true %>
+      </p>
+  </div>
+</div>

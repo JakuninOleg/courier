@@ -1,0 +1,11 @@
+<% if current_user.role.name == 'Courier' %>
+
+<span class='courier-home'>
+  <%= render partial: 'show_courier', locals: {application: @application} %>
+</span>
+<% else %>
+  <%= render 'show_operator' %>
+<% end %>
+
+
+

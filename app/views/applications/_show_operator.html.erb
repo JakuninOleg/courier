@@ -1,0 +1,241 @@
+<div class="supervisor-menu-container">
+  <div class="logo-dashboard">
+    <%= image_tag 'logo.png', width: "200px" %>
+  </div>
+</div>
+
+<div class="ui grid">
+  <div class="six wide column">
+
+
+    <div class="margin-top-small client-info position-fixed">
+      <div class="client-info__content">
+        <p>ID: <%= @application.id %></p>
+        <p>Клиент: <%= @application.name %></p>
+        <p>Договор: <%= @application.sputnikid %></p>
+        <p>Тел: <%= @application.phone %></p>
+        <p>Адрес: <%= @application.address %></p>
+        <p>Курьер: <%= @application.user.email %></p>
+        <p>Дата: <%= @application.time.strftime("%d.%m.%Y") %></p>
+        <p>Время: <%= @application.timeslot.range %></p>
+        <p>Адрес: <%= @application.address %></p>
+      </div>
+
+
+
+      <div class="margin-top-small">
+
+
+        <div class="ui two column grid">
+          <div class="column">
+            <%= form_for @application, remote: true do  |t| %>
+              <%= t.hidden_field :status_id, value: 10 %>
+              <%= t.submit "Авторизовать", class: "ui button yellow fluid" %>
+            <% end %>
+          </div>
+          <div class="column">
+            <%= form_for @application, remote: true do  |t| %>
+              <%= t.hidden_field :status_id, value: 10 %>
+              <%= t.submit "Запросить фото", class: "ui button yellow fluid" %>
+            <% end %>
+          </div>
+        </div>
+
+      </div>
+
+
+      <div class="margin-top-tiny">
+        <%= form_for @application, remote: true do  |t| %>
+          <%= t.hidden_field :status_id, value: 10 %>
+          <%= t.hidden_field :rejectreason_id, value: 15 %>
+          <%= t.submit "Отказать", class: "ui button grey fluid" %>
+        <% end %>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="ten wide column">
+    <div class="client-photo margin-top-small">
+
+
+      <% if @application.agreement_photos.attached? %>
+
+        <div class="active-storage-agreement-photos">
+            <p><strong>Фото договора:</strong></p>
+
+              <% @application.agreement_photos.in_groups_of(3, false) do |app_group| %>
+              <div class="ui three column grid">
+                  <% app_group.each do |app| %>
+                    <div class="column">
+                      <a href="#agreement-photo-<%= app.id %>" data-turbolinks="false">
+                        <%= image_tag app, class: 'client-img' %>
+                      </a>
+                      <p>
+                        <%= link_to 'Скачать', rails_blob_path(app, disposition: "attachment") %>
+                      </p>
+                    </div>
+                    <a href="#close" class="lightbox" id="agreement-photo-<%= app.id %>" data-turbolinks="false">
+                      <%= image_tag app %>
+                    </a>
+                  <% end %>
+               </div>
+              <% end %>
+
+              <%= link_to 'Удалить все фото договора', {controller: :applications, action: :delete_attachment_collection,
+                                                        id: @application.id}, method: :delete, remote: true %>
+         </div>
+      <% end %>
+
+      <div class="margin-top-tiny">
+      <div class="ui three column grid">
+
+        <% if @application.client_passport.attached? %>
+          <div class="column">
+            <div class="active-storage-<%= @application.client_passport.id %>">
+              <p><strong>Фото клиента с паспортом:</strong></p>
+              <a href="#client-passport" data-turbolinks="false">
+                 <%= image_tag @application.client_passport, class: 'client-img' %>
+              </a>
+              <p>
+                <%= link_to 'Скачать', rails_blob_path(@application.client_passport, disposition: "attachment") %>
+                <%= link_to 'Удалить', {controller: :applications, action: :delete_image_attachment,
+                                        id: @application.client_passport.id}, method: :delete, remote: true %>
+              </p>
+            </div>
+          </div>
+        <% end %>
+
+
+      <% if @application.passport_photo.attached? %>
+        <div class="column">
+          <div class="active-storage-<%= @application.passport_photo.id %>">
+            <p><strong>Фото паспорта:</strong></p>
+            <a href="#passport-photo" data-turbolinks="false">
+              <%= image_tag @application.passport_photo, class: 'client-img' %>
+            </a>
+            <p>
+              <%= link_to 'Скачать', rails_blob_path(@application.passport_photo, disposition: "attachment") %>
+              <%= link_to 'Удалить', {controller: :applications, action: :delete_image_attachment,
+                                  id: @application.passport_photo.id}, method: :delete, remote: true %>
+            </p>
+          </div>
+        </div>
+      <% end %>
+
+      <% if @application.registration.attached? %>
+      <div class="column">
+        <div class="active-storage-<%= @application.registration.id %>">
+            <p><strong>Регистрация:</strong></p>
+            <a href="#registration" data-turbolinks="false">
+              <%= image_tag @application.registration, class: 'client-img' %>
+            <p>
+              <%= link_to 'Скачать', rails_blob_path(@application.registration, disposition: "attachment") %>
+              <%= link_to 'Удалить', {controller: :applications, action: :delete_image_attachment,
+                                    id: @application.registration.id}, method: :delete, remote: true %>
+            </p>
+        </div>
+      </div>
+      <% end %>
+      </div>
+    </div>
+
+    <div class="ui three column grid">
+
+      <% if @application.asp_agreement.attached? %>
+      <div class="column">
+        <div class="active-storage-<%= @application.asp_agreement.id %>">
+          <p>
+            <p><strong>Соглашение АСП:</strong></p>
+            <a href="#asp-agreement" data-turbolinks="false">
+              <%= image_tag @application.asp_agreement, class: 'client-img' %>
+            </a>
+            <p>
+              <%= link_to 'Скачать', rails_blob_path(@application.asp_agreement, disposition: "attachment") %>
+              <%= link_to 'Удалить', {controller: :applications, action: :delete_image_attachment,
+                                    id: @application.asp_agreement.id}, method: :delete, remote: true %>
+            </p>
+          </p>
+        </div>
+      </div>
+      <% end %>
+
+      <% if @application.third_party_agreement.attached? %>
+      <div class="column">
+        <div class="active-storage-<%= @application.third_party_agreement.id %>">
+          <p>
+            <p><strong>Согласие - третьи лица:</strong></p>
+            <a href="#third-party-agreement" data-turbolinks="false">
+              <%= image_tag @application.third_party_agreement, class: 'client-img' %>
+            </a>
+            <p>
+              <%= link_to 'Скачать', rails_blob_path(@application.third_party_agreement, disposition: "attachment") %>
+              <%= link_to 'Удалить', {controller: :applications, action: :delete_image_attachment,
+                                    id: @application.third_party_agreement.id}, method: :delete, remote: true %>
+            </p>
+          </p>
+        </div>
+      </div>
+      <% end %>
+
+      <% if @application.pd_agreement.attached? %>
+      <div class="column">
+        <div class="active-storage-<%= @application.pd_agreement.id %>">
+          <p>
+            <p><strong>Соглашение на обработку ПД:</strong></p>
+            <a href="#pd-agreement" data-turbolinks="false">
+              <%= image_tag @application.pd_agreement, class: 'client-img' %>
+            </a>
+            <p>
+              <%= link_to 'Скачать', rails_blob_path(@application.pd_agreement, disposition: "attachment") %>
+              <%= link_to 'Удалить', {controller: :applications, action: :delete_image_attachment,
+                                    id: @application.pd_agreement.id}, method: :delete, remote: true %>
+            </p>
+          </p>
+        </div>
+      </div>
+      <% end %>
+    </div>
+
+      <% if @application.loan_agreement.attached? %>
+
+        <div class="active-storage-<%= @application.loan_agreement.id %>">
+          <p>
+            <p><strong>Договор займа:</strong></p>
+            <a href="#loan-agreement" data-turbolinks="false">
+              <%= image_tag @application.loan_agreement, class: 'client-img' %>
+            </a>
+            <p>
+              <%= link_to 'Скачать', rails_blob_path(@application.loan_agreement, disposition: "attachment") %>
+              <%= link_to 'Удалить', {controller: :applications, action: :delete_image_attachment,
+                                    id: @application.loan_agreement.id}, method: :delete, remote: true %>
+            </p>
+          </p>
+        </div>
+
+      <% end %>
+
+  </div>
+</div>
+
+<a href="#close" class="lightbox" id="client-passport" data-turbolinks="false">
+  <%= image_tag @application.client_passport %>
+</a>
+<a href="#close" class="lightbox" id="passport-photo" data-turbolinks="false">
+  <%= image_tag @application.passport_photo %>
+</a>
+<a href="#close" class="lightbox" id="registration" data-turbolinks="false">
+  <%= image_tag @application.registration %>
+</a>
+<a href="#close" class="lightbox" id="asp-agreement" data-turbolinks="false">
+  <%= image_tag @application.asp_agreement %>
+</a>
+<a href="#close" class="lightbox" id="third-party-agreement" data-turbolinks="false">
+  <%= image_tag @application.third_party_agreement %>
+</a>
+<a href="#close" class="lightbox" id="pd-agreement" data-turbolinks="false">
+  <%= image_tag @application.pd_agreement %>
+</a>
+<a href="#close" class="lightbox" id="loan-agreement" data-turbolinks="false">
+  <%= image_tag @application.loan_agreement%>
+</a>

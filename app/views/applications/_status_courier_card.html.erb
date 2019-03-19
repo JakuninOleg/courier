@@ -1,0 +1,16 @@
+<div class="card-form">
+  <div class="card-form__header">
+    Привяжите карту банка
+  </div>
+  <div class="ui form">
+      <div class="field">
+        <%= form_for @application, :html => {class: 'ui form massive'} do  |t| %>
+          <%= t.hidden_field :status_id, value: 11 %>
+          <%= t.text_field :card, placeholder: 'Номер карты', class: 'big', required: true %>
+          <div class="margin-top-tiny">
+            <%= t.submit "Привязать карту", class: "ui button massive primary fluid" %>
+          </div>
+        <% end %>
+      </div>
+  </div>
+</div>

@@ -1,0 +1,67 @@
+.container-app {
+    height: 100vh;
+    width: 100%;
+    position: fixed;
+    background-color: #FED837;
+    top: 0;
+    left: 0;
+    z-index: -100;
+}
+
+.ui.secondary.menu {
+    padding: 3%;
+}
+
+.ui.secondary.menu .item > img:not(.ui) {
+    width: 300px;
+    margin-top: 5%;
+}
+
+.app-container {
+    padding: 80px;
+    font-size: 30px;
+}
+
+.navbar-courier {
+    position: fixed;
+    width: 100%;
+    background-color: #FED837;
+}
+
+.cards {
+    position: relative;
+    top: 380px;
+}
+
+.ui.card {
+    width: 85%;
+    font-size: 30px;
+    margin: 0 auto;
+    box-shadow: 0 1.5rem 4rem rgba(black, 0.15);
+    margin-bottom: 5%;
+}
+
+.ui.label {
+  font-size: 20px;
+}
+
+.ui.large.modal {
+  padding: 50px;
+  font-size: 20px;
+}
+
+.ui.centered.grid > .column:not(.aligned):not(.justified):not(.row), .ui.centered.grid > .row > .column:not(.aligned):not(.justified), .ui.grid .centered.row > .column:not(.aligned):not(.justified) {
+  text-align: center;
+}
+
+.ui.huge.button {
+  font-size: 23px;
+}
+
+.courier-nav {
+  height: 22vh;
+}
+
+.ui.cards > .card > .content > .header:not(.ui), .ui.card > .content > .header:not(.ui) {
+  font-size: 30px;
+}

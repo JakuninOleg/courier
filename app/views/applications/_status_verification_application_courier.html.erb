@@ -1,0 +1,58 @@
+<div class="app-card">
+  <div class="ui centered grid">
+    <div class="ui centered row">
+      <div class="ui checkbox adequate">
+        <input type="checkbox" name="adequate">
+        <label>Клиент трезв и адекватен</label>
+      </div>
+    </div>
+
+    <div class="ui centered row">
+      <div class="ui checkbox passport_photo">
+        <input type="checkbox" name="passport_photo">
+        <label>Фото в паспорте соответствует человеку</label>
+      </div>
+    </div>
+
+    <div class="ui centered row">
+      <div class="ui checkbox passport_data">
+        <input type="checkbox" name="passport_data">
+        <label>Данные паспорта верные</label>
+      </div>
+    </div>
+
+     <div class="ui centered row">
+       <div class="verification_button hidden">
+          <%= form_for application, remote: true do |t| %>
+            <%= t.hidden_field :status_id, value: 6  %>
+            <%= t.submit "ВЕРИФИЦИРОВАТЬ", class: "vb button blue massive ui" %>
+          <% end %>
+       </div>
+       <div class="unverified_button">
+         <div class="vb button red massive ui cancel-app">Отказать</div>
+       </div>
+     </div>
+  </div>
+</div>
+
+<div class="ui large modal cancel">
+  <div class="header">
+    <div class="ui centered grid">
+      <div class="app-approval">ДАННОЕ ДЕЙСТВИЕ ОТМЕНИТ ЗАЯВКУ И УДАЛИТ ЕЁ С ВАШЕГО ТЕЛЕФОНА</div>
+      <div class="ui centered row">ОТМЕНИТЬ ЗАЯВКУ?</div>
+    </div>
+  </div>
+  <div class="content">
+    <div class="ui three column centered grid">
+      <div class="column">
+        <div class="button ui red huge app-cancel-button modal-button">НЕТ</div>
+      </div>
+      <div class="column">
+          <%= form_for application, remote: true do |t| %>
+            <%= t.hidden_field :status_id, value: 15 %>
+            <%= t.submit "ДА", class: "button ui basic huge modal-button" %>
+          <% end %>
+      </div>
+    </div>
+  </div>
+</div>

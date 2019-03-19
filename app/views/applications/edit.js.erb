@@ -1,0 +1,8 @@
+location.href = "#popup-edit";
+
+$('.popup-edit__form').empty();
+$('.popup-edit__form').append("<%= j render(partial: 'edit_partial', :locals => {app: @application}) %>");
+$('select.dropdown').dropdown();
+$('.popup-edit__form').append("<a href='#' data-turbolinks='false' class='popup-new__close'>&times;</a>");
+
+

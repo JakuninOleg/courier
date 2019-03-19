@@ -1,0 +1,24 @@
+<%= content_tag :div, class: "ui grid operator-grid", data: { quantity: "#{app_group.size}" } do %>
+  <% app_group.each do |app| %>
+    <%= content_tag :div, class: "segment app-id-#{app.id}" do %>
+      <div class="ui card operator-card">
+        <div class="content">
+          <div class="header">
+            <%= app.name %>
+          </div>
+          <div class="description">
+            <p>ID заявки: <%= app.id %></p>
+            <p><%= app.status.operator %></p>
+            <p><b>Телефон:</b> <%= app.phone %></p>
+            <p><b>Адрес: </b><%= app.address %></p>
+            <p><b>Номер в спутнике: </b> <%= app.sputnikid %></p>
+            <p><%= link_to 'Delete', application_path(app), method: :delete, remote: true %></p>
+            <p><%= link_to 'Редактировать', edit_application_path(app) %><p>
+            <p></p>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  <% end %>
+<% end %>
+
