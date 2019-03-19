@@ -82,4 +82,4 @@ production:
   <<: *default
   database: courier_production
   username: courier
-  password: <%= ENV['COURIER_DATABASE_PASSWORD'] %>
+  password: Dfghjcbr8
