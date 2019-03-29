@@ -5,15 +5,16 @@
   margin: 0 auto;
   width: 85%;
   padding: 20px;
-  height: 73vh;
+  height: 76vh;
 }
 
 .app-content-header {
-  font-size: 60px;
+  font-size: 50px;
   font-weight: bold;
   padding-left: 2%;
   padding-top: 3%;
   line-height: 1.28571429em;
+  padding-bottom: 1%;
 }
 
 .app-content {
@@ -34,7 +35,7 @@
   background-color: #EAEAEA;
   box-shadow: inset 0px 0px 14px -1px rgba(153,153,153,1);
   width: 90%;
-  height: 40%;
+  height: 32vh;
   border-radius: 10px;
 }
 
@@ -52,7 +53,6 @@
   padding-right: 3%;
   font-size: 30px;
   color: #898787;
-  margin-bottom: 30%;
 }
 
 .button-group .ui.huge.button {

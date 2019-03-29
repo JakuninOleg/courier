@@ -25,13 +25,14 @@ $(document).on('turbolinks:load', function () {
         }
 
         else if (data.update) {
-          if (data.user_id == data.courier_id && data.status_id > 12) {
+          courierShow = document.querySelector('.courier-show');
+          courierHome = document.querySelector('.courier-home');
+
+          if (data.user_id == data.courier_id && data.status_id > 12 && courierShow) {
             window.location.replace('/');
-            console.log('Возврат на главную');
-          } else if (data.user_id == data.courier_id) {
+          } else if (courierShow) {
             location.reload();
-            console.log('Релоад страницы');
-          } else if (data.user_id != data.courier_id) {
+          } else if (courierHome) {
             if ("vibrate" in navigator) {
               window.navigator.vibrate(500);
             };

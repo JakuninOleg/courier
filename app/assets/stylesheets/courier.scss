@@ -1,5 +1,5 @@
 .container-app {
-    height: 100vh;
+    height: 100%;
     width: 100%;
     position: fixed;
     background-color: #FED837;
@@ -26,6 +26,7 @@
     position: fixed;
     width: 100%;
     background-color: #FED837;
+    z-index: 100;
 }
 
 .cards {
@@ -42,26 +43,44 @@
 }
 
 .ui.label {
-  font-size: 20px;
+    font-size: 20px;
 }
 
 .ui.large.modal {
-  padding: 50px;
-  font-size: 20px;
+    padding: 50px;
+    font-size: 20px;
 }
 
 .ui.centered.grid > .column:not(.aligned):not(.justified):not(.row), .ui.centered.grid > .row > .column:not(.aligned):not(.justified), .ui.grid .centered.row > .column:not(.aligned):not(.justified) {
-  text-align: center;
+    text-align: center;
 }
 
 .ui.huge.button {
-  font-size: 23px;
+    font-size: 23px;
 }
 
 .courier-nav {
-  height: 22vh;
+    height: 22vh;
 }
 
 .ui.cards > .card > .content > .header:not(.ui), .ui.card > .content > .header:not(.ui) {
-  font-size: 30px;
+    font-size: 30px;
+}
+
+.postpone-button {
+    margin: 0 auto;
+    width: 61%;
+}
+
+.login-button {
+    width: 55%;
+    margin-top: 5%;
+}
+
+.login-container {
+    margin: 0 auto;
+    position: absolute;
+    top: 45%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }

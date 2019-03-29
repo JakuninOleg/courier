@@ -3,5 +3,5 @@
 <% elsif app.status_id == 2 %>
   <%= render partial: 'edit/edit', locals: {app: app} %>
 <% else %>
-  <%= render partial: 'edit/edit', locals: {app: app} %>
+  <%= render partial: 'edit/postpone', locals: {app: app} %>
 <% end %>

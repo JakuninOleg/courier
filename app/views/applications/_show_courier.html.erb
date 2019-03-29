@@ -1,6 +1,8 @@
-<div class="container-app">
+<div class="courier-show">
 </div>
 
+<div class="container-app">
+</div>
 
 <div class="courier-nav">
   <%= render "shared/courier_navbar" %>
@@ -27,7 +29,7 @@
   <% elsif application.status_id == 8 %>
     <%= render partial: 'applications/status_wait_photo', locals: {application: application} %>
   <% elsif application.status_id == 9 %>
-    <%= render partial: 'applications/status_wait_photo', locals: {application: application} %>
+    <%= render partial: 'applications/status_new_photo', locals: {application: application} %>
   <% elsif application.status_id == 10 %>
     <%= render partial: 'applications/status_courier_card', locals: {application: application} %>
   <% elsif application.status_id == 11 %>

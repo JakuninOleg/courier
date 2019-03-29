@@ -31,3 +31,4 @@ node_modules/
 
 /.bundle
 /vendor/bundle
+/.vscode

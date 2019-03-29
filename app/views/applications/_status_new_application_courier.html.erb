@@ -28,6 +28,14 @@
           </div>
         </div>
       </div>
+
+      <div class="ui centered grid">
+        <div class="column">
+          <div class="postpone-button">
+            <div class="ui button massive fluid purple postpone-app">Перенести встречу</div>
+          </div>
+        </div>
+      </div>
    </div>
 </div>
 
@@ -41,7 +49,7 @@
   <div class="content">
     <div class="ui three column centered grid">
       <div class="column">
-        <%= form_for application, remote: true do |t| %>
+        <%= form_for application do |t| %>
           <%= t.hidden_field :status_id, value: 4 %>
           <%= t.submit "Подтвердить", class: "button ui blue huge modal-button-2" %>
         <% end %>
@@ -66,7 +74,30 @@
         <div class="button ui red huge app-cancel-button modal-button-2">НЕТ</div>
       </div>
       <div class="column">
-          <%= form_for application, remote: true do |t| %>
+          <%= form_for application do |t| %>
+            <%= t.hidden_field :status_id, value: 15 %>
+            <%= t.hidden_field :rejectreason_id, value: 1 %>
+            <%= t.submit "ДА", class: "button ui basic huge modal-button-2" %>
+          <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="ui large modal postpone">
+  <div class="header">
+    <div class="ui centered grid">
+      <div class="app-approval">ПЕРЕНОС ВРЕМЕНИ ВСТРЕЧИ С КЛИЕНТОМ ОСУЩЕСТВЛЯЕТСЯ ОПЕРАТОРОМ КОЛЛ-ЦЕНТРА</div>
+      <div class="ui centered row">ЗАПРОСИТЬ ПЕРЕНОС?</div>
+    </div>
+  </div>
+  <div class="content">
+    <div class="ui three column centered grid">
+      <div class="column">
+        <div class="button ui red huge app-cancel-button modal-button-2">НЕТ</div>
+      </div>
+      <div class="column">
+          <%= form_for application do |t| %>
             <%= t.hidden_field :status_id, value: 13 %>
             <%= t.submit "ДА", class: "button ui basic huge modal-button-2" %>
           <% end %>

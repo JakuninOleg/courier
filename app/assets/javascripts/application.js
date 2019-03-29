@@ -80,6 +80,10 @@ $(document).on('turbolinks:load', function () {
     $('.large.modal.cancel').modal('show');
   });
 
+  $('.postpone-app').click(function () {
+    $('.large.modal.postpone').modal('show');
+  });
+
   $('.app-cancel-button').click(function () {
     $('.large.modal').modal('hide');
   });

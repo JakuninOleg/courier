@@ -7,34 +7,37 @@
   </div>
 
 
-<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-<div class="holder">
-  <div class="ui two column centered grid middle aligned">
-    <div class="centered row">
-      <div class="big left icon input ui">
-        <%= f.text_field :email, autofocus: true, placeholder: "Введите имя" %>
-        <i class="users icon"></i>
-      </div>
-     </div>
-  <div class="centered row">
-    <div class="big left icon input ui">
-      <%= f.password_field :password, placeholder: "Введите пароль" %>
-      <i class="key icon"></i>
-    </div>
-  </div>
-
-    <% if devise_mapping.rememberable? -%>
+<div class=login-container>
+  <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+  <div class="holder">
+    <div class="ui two column centered grid middle aligned">
       <div class="centered row">
-        <div class="ui checkbox">
-          <%= f.check_box :remember_me %>
-          <%= f.label 'Запомнить' %>
+        <div class="massive left icon input ui">
+          <%= f.text_field :email, autofocus: true, placeholder: "Введите имя" %>
+          <i class="users icon"></i>
         </div>
       </div>
-    <% end -%>
-
     <div class="centered row">
-      <%= f.submit "Войти", class: "big ui button primary" %>
+      <div class="massive left icon input ui">
+        <%= f.password_field :password, placeholder: "Введите пароль" %>
+        <i class="key icon"></i>
+      </div>
+    </div>
+
+      <% if devise_mapping.rememberable? -%>
+        <div class="hidden">
+          <div class="ui checkbox">
+            <%= f.check_box :remember_me, checked: true %>
+            <%= f.label 'Запомнить' %>
+          </div>
+        </div>
+      <% end -%>
+      <div class="login-button">
+        <div class="centered row">
+          <%= f.submit "Войти", class: "massive ui button primary fluid" %>
+        </div>
+      </div>
     </div>
   </div>
+  <% end %>
 </div>
-<% end %>
